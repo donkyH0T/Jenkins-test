@@ -2,14 +2,14 @@ version: '3.7'
 
 services:
   jenkins:
-    image: jenkins/jenkins:lts
+    build: .
     container_name: jenkins
     ports:
       - "8080:8080"
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
-      - ./init.groovy.d:/var/jenkins_home/init.groovy.d  # скрипт для автологина
+      - ./init.groovy.d:/var/jenkins_home/init.groovy.d
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
     restart: always
